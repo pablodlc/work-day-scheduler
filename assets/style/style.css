@@ -20,8 +20,13 @@ textarea {
     color: black;
     border-radius: 0;
     border-bottom: 10px solid black;
-    padding: 20px 0px 0px 0px;
+    padding: 5px 0px 0px 0px;
     margin: 0 0 0 15px;
+}
+
+header p {
+    font-size: 14px;
+    margin: 5px 0;
 }
 
 .container {

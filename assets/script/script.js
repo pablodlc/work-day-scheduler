@@ -24,27 +24,25 @@ var btn3 = $("#three");
 var btn4 = $("#four");
 var btn5 = $("#five");
 
-// Declaring a variable to catch all elements with .dynamic in order to change the background color based on the time
-var dynamicBG = $(".dynamic");
-// Declaring a var to get the current time in "00" hour format only; ie., as I write this, currentHour = 17 because it is 5:49pm
-var currentHour = moment().format("HH");
 
-var timeObj = [];
+// Declaring a var to get the current time in 24hr format, with no leading zero on single-digit times; ie., as I write this, currentHour = 17 because it is 5:49pm. If it were 5:49am, currentHour would equal 5.
+var currentHour = moment().format("H");
 
-// for (var i = 0; i < dynamicBG.length; i++) {
-//     // Offsetting `taskTime` by +9. `[i]` starts a 0, which is equivalent to 0 o'clock, and the app starts at 9 A.M. 
-//     var taskTime = parseInt([i]) + 9;
+// This will cycle through all elements with ".dynamic"
+$(".dynamic").each(setInerval(function (i) {
+    // The iterator starts at 0. Adding 9 to iterator because the app starts at 9am
+    var offsetter = parseInt([i]) + 9;
 
-//     if (parseInt(taskTime) === parseInt(currentHour)) {
-//         $(dynamicBG[i]).css("background-color", "red");
+    // Comparing offsetter to currentHour and adding classes to the ".dynamic"s accordingly
+    if (offsetter < currentHour) {
+        $(this).addClass("past");
+    } else if (offsetter > currentHour) {
+        $(this).addClass("future");
+    } else {
+        $(this).addClass("present");
+    }
 
-//     } else if (parseInt(taskTime) < parseInt(currentHour)) {
-//         $(dynamicBG[i].css("background-color", "grey"))
-//     }
-//     else { $(dynamicBG[i].css("background-color", "green")) }
-// }
-
-
+}, 1000));
 
 // Declaring the functions to save user input to local storage, which are on click events for each hour's save button
 $(btn9).click(function () {

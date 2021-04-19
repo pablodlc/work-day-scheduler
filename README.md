@@ -2,7 +2,7 @@
 
 ## Description
 
-My application can be found by clicking the following link: [Work Day Scheduler]("https://pablodlc.github.io/work-day-scheduler/").  
+My application can be found by clicking the following link: https://pablodlc.github.io/work-day-scheduler/
 **Work Day Scheduler** is a daily planner style application written to satisfy the _User Story_ and _Acceptance Criteria_ lovingly recreated below.
 
 ### User Story

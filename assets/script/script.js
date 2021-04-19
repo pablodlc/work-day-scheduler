@@ -23,26 +23,28 @@ var btn2 = $("#two");
 var btn3 = $("#three");
 var btn4 = $("#four");
 var btn5 = $("#five");
+var deleteBtn = $("#delete");
 
 
 // Declaring a var to get the current time in 24hr format, with no leading zero on single-digit times; ie., as I write this, currentHour = 17 because it is 5:49pm. If it were 5:49am, currentHour would equal 5.
 var currentHour = moment().format("H");
+setInterval(function (i) {
+    // This will cycle through all elements with ".dynamic"
+    $(".dynamic").each(function (i) {
 
-// This will cycle through all elements with ".dynamic"
-$(".dynamic").each(setInerval(function (i) {
-    // The iterator starts at 0. Adding 9 to iterator because the app starts at 9am
-    var offsetter = parseInt([i]) + 9;
+        // The iterator starts at 0. Adding 9 to iterator because the app starts at 9am
+        var offsetter = parseInt([i]) + 9;
 
-    // Comparing offsetter to currentHour and adding classes to the ".dynamic"s accordingly
-    if (offsetter < currentHour) {
-        $(this).addClass("past");
-    } else if (offsetter > currentHour) {
-        $(this).addClass("future");
-    } else {
-        $(this).addClass("present");
-    }
-
-}, 1000));
+        // Comparing offsetter to currentHour and adding classes to the ".dynamic"s accordingly
+        if (offsetter < currentHour) {
+            $(this).addClass("past");
+        } else if (offsetter > currentHour) {
+            $(this).addClass("future");
+        } else {
+            $(this).addClass("present");
+        }
+    }), 60000
+});
 
 // Declaring the functions to save user input to local storage, which are on click events for each hour's save button
 $(btn9).click(function () {
@@ -98,6 +100,15 @@ $(btn5).click(function () {
         localStorage.setItem("key5", inValue5.val());
     }
 });
+
+// Delete button runs a confirm.  If confirm = true, local storage is cleared and page is reloaded
+$(deleteBtn).click(function () {
+    var clear = confirm("Would you like to clear all items?");
+    if (clear) {
+        localStorage.clear();
+        location.reload();
+    }
+})
 
 
 //Using moment.js to programatically set the date and time in `.jumbotron`
